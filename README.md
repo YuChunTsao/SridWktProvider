@@ -1,5 +1,10 @@
 # SridWktProvider
 
+[![Release](https://github.com/YuChunTsao/SridWktProvider/actions/workflows/release.yml/badge.svg)](https://github.com/YuChunTsao/SridWktProvider/actions/workflows/release.yml)
+[![Test](https://github.com/YuChunTsao/SridWktProvider/actions/workflows/test.yml/badge.svg)](https://github.com/YuChunTsao/SridWktProvider/actions/workflows/test.yml)
+![GitHub License](https://img.shields.io/github/license/YuChunTsao/SridWktProvider)
+![NuGet Version](https://img.shields.io/nuget/v/SridWktProvider)
+
 SridWktProvider is a lightweight C# library for loading and querying EPSG SRID to WKT1 mappings, using data exported from the [PROJ](https://github.com/OSGeo/PROJ) database. It supports reading mappings from CSV files or streams and provides simple APIs for retrieving WKT1 definitions by SRID code.
 
 ## Installation
