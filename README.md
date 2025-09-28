@@ -37,16 +37,19 @@ sh ./scripts/generate_srid_wkt_csv.sh
 > - You need to have PROJ installed and available in your PATH.
 > - I exported the data using PROJ version 9.7.0.
 
-## Testing
+## Development & Testing
+
+To set up the project locally, ensure you have the .NET SDK installed. Clone the repository and restore dependencies:
+
+```bash
+git clone git@github.com:YuChunTsao/SridWktProvider.git
+dotnet restore
+```
+
+To run the tests, use:
 
 ```bash
 dotnet test
-```
-
-## Create NuGet package
-
-```bash
-dotnet pack -c Release
 ```
 
 ## License
