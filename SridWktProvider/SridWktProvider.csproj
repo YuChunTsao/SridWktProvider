@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>SridWktProvider</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>YuChunTaso</Authors>
+    <Description>SridWktProvider is a lightweight C# library for loading and querying EPSG SRID to WKT1 mappings, using data exported from the PROJ database. It supports reading mappings from CSV files or streams and provides simple APIs for retrieving WKT1 definitions by SRID code.</Description>
+    <PackageTags>EPSG;WKT;SRID;PROJ;coordinate system;spatial;GIS</PackageTags>
+    <RepositoryUrl>https://github.com/YuChunTsao/SridWktProvider</RepositoryUrl>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="data\srid_wkt_mapping.csv" />
+    <None Include="../README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>
