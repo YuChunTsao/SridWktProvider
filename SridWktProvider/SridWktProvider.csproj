@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <PackageId>SridWktProvider</PackageId>
-    <Version>1.0.0</Version>
     <Authors>YuChunTaso</Authors>
     <Description>SridWktProvider is a lightweight C# library for loading and querying EPSG SRID to WKT1 mappings, using data exported from the PROJ database. It supports reading mappings from CSV files or streams and provides simple APIs for retrieving WKT1 definitions by SRID code.</Description>
     <PackageTags>EPSG;WKT;SRID;PROJ;coordinate-systems;spatial;GIS</PackageTags>

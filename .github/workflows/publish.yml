@@ -22,7 +22,9 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Pack
-        run: dotnet pack --configuration Release --no-build
+        run: |
+          VERSION=$(git tag | sort -V | tail -n1 | sed 's/^v//')
+          dotnet pack --configuration Release --no-build -p:PackageVersion=$VERSION
 
       - name: Publish to NuGet
         run: dotnet nuget push ./SridWktProvider/bin/Release/*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

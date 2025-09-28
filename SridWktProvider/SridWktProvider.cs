@@ -5,11 +5,11 @@
     public required string Wkt { get; set; }
 }
 
-public class SridWktProvider
+public static class SridWktProvider
 {
-    private List<SridWktEntry>? _cachedEntries = null;
+    private static List<SridWktEntry>? _cachedEntries = null;
 
-    public SridWktProvider()
+    public static void Init()
     {
         var assembly = System.Reflection.Assembly.GetExecutingAssembly();
         using var stream = assembly.GetManifestResourceStream("SridWktProvider.data.srid_wkt_mapping.csv");
@@ -19,7 +19,7 @@ public class SridWktProvider
         LoadFromCsv(stream);
     }
 
-    public void LoadFromCsv(Stream stream)
+    public static void LoadFromCsv(Stream stream)
     {
         var entries = new List<SridWktEntry>();
 
@@ -37,7 +37,7 @@ public class SridWktProvider
         _cachedEntries = entries.Count > 0 ? entries : null;
     }
 
-    public void LoadFromCsv(string filePath)
+    public static void LoadFromCsv(string filePath)
     {
         var entries = new List<SridWktEntry>();
 
@@ -51,7 +51,7 @@ public class SridWktProvider
         _cachedEntries = entries.Count > 0 ? entries : null;
     }
 
-    private SridWktEntry? ReadLine(string line)
+    private static SridWktEntry? ReadLine(string line)
     {
         var parts = line.Split(',', 3, StringSplitOptions.None);
         if (parts.Length == 3 && int.TryParse(parts[1], out int code))
@@ -60,7 +60,7 @@ public class SridWktProvider
             {
                 Authority = parts[0],
                 Code = code,
-                Wkt = parts[2]
+                Wkt = HandleDoubleQuotes(parts[2])
             };
         }
         else
@@ -69,14 +69,19 @@ public class SridWktProvider
         }
     }
 
-    public List<SridWktEntry> GetAllEntries()
+    private static string HandleDoubleQuotes(string input)
+    {
+        return input.Replace("\"\"", "\"");
+    }
+
+    public static List<SridWktEntry> GetAllEntries()
     {
         if (_cachedEntries == null)
             throw new InvalidOperationException("SRID WKT data not loaded. Call LoadFromCsv(path) first.");
         return _cachedEntries;
     }
 
-    public string? GetWkt(int srid)
+    public static string? GetWkt(int srid)
     {
         if (_cachedEntries == null)
             throw new InvalidOperationException("SRID WKT data not loaded. Call LoadFromCsv(path) first.");
@@ -84,7 +89,7 @@ public class SridWktProvider
         return entry?.Wkt;
     }
 
-    public void AddCustomMapping(int srid, string wkt)
+    public static void AddCustomMapping(int srid, string wkt)
     {
         if (_cachedEntries == null)
             _cachedEntries = new List<SridWktEntry>();
